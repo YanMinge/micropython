@@ -38,9 +38,15 @@ struct _mp_state_thread_t;
 #include <mpthreadport.h>
 #endif
 
+#define MP_THREAD_STACK_TYPE_INTERNEL                     (1)
+#define MP_THREAD_STACK_TYPE_SPIRAM                       (2)
+
+#define MP_THREAD_PRIORITY_DEFAULT                        (1)
+#define MP_THREAD_STACK_TYPE_DEFAULT                      (1)
+
 struct _mp_state_thread_t *mp_thread_get_state(void);
 void mp_thread_set_state(struct _mp_state_thread_t *state);
-void mp_thread_create(void *(*entry)(void *), void *arg, size_t *stack_size);
+void mp_thread_create(void *(*entry)(void*), void *arg, int thread_priority, int thread_stack_type, size_t *stack_size);
 void mp_thread_start(void);
 void mp_thread_finish(void);
 void mp_thread_mutex_init(mp_thread_mutex_t *mutex);
